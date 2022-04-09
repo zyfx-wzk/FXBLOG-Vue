@@ -1,4 +1,4 @@
-# fxblog
+# Fxblog - Vue
 
 ## Project setup
 ```
