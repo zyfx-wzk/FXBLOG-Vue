@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Microsoft YaHei", "黑体", "宋体", sans-serif;;
+}
+
+/*包含以下四种的链接*/
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: unset;
+}
+
+/*滚动条整体*/
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+/*滚动条滑块*/
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    width: 6px;
+    background: #da77f2
+}
+/*滚动条背景*/
+::-webkit-scrollbar-track {
+    border-radius: 3px; /*滚动条的背景区域的圆角*/
+    background-color: #fdf8f5; /*滚动条的背景颜色*/
+}
