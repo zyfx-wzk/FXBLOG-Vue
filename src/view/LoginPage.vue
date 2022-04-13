@@ -22,7 +22,7 @@
 
 <script>
 import router from "@/router/router";
-import {login} from "@/api/api";
+import {loginApi} from "@/api/api";
 
 export default {
   name: 'LoginBox',
@@ -38,7 +38,7 @@ export default {
   methods: {
     login() {
       let data = this.loginInfo;
-      login(data)
+      loginApi(data)
           .then((result) => {
             //成功登录则保存token并跳转到主页面
             localStorage.setItem("token", result.data);

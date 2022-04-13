@@ -11,17 +11,34 @@ a, a:link, a:visited, a:hover, a:active {
     color: unset;
 }
 
+html, body {
+    scroll-behavior: smooth;
+}
+
+/*解决滚动条造成的页面抖动*/
+html {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+body {
+    width: 100vw;
+    overflow: hidden;
+    padding-right: calc(100vw - 100%);
+}
+
 /*滚动条整体*/
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
 }
+
 /*滚动条滑块*/
 ::-webkit-scrollbar-thumb {
     border-radius: 3px;
     width: 6px;
     background: #da77f2
 }
+
 /*滚动条背景*/
 ::-webkit-scrollbar-track {
     border-radius: 3px; /*滚动条的背景区域的圆角*/

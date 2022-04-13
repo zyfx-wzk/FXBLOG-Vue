@@ -1,5 +1,5 @@
 <template>
-  <el-backtop>
+  <el-backtop style="right: 20px;bottom: 20px">
   </el-backtop>
 </template>
 
@@ -9,5 +9,5 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 </style>

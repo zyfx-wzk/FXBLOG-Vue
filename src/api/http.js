@@ -2,44 +2,19 @@ import axios from "axios"
 import router from "@/router/router";
 import message from "@/util/message";
 import encrypt from "@/util/rsa";
-import {ElLoading} from "element-plus";
+import {loadingClose, loadingCreate} from "@/util/loading";
 // axios的初始配置
 const http = axios.create({
     baseURL: 'http://localhost:8080/',
-    timeout: 1000,
+    timeout: 3000,
     headers: {
         'Content-Type': 'application/json; charset=utf-8'
     }
 })
 
-//加载页面设置
-const loadingOption = {
-    body: true,
-    //铺满全屏
-    fullscreen: true,
-    //锁定屏幕
-    lock: true,
-    text: "正在加载资源"
-}
-
-//目前加载的数量
-let loadingNum = 0;
-
-//加载页面实例
-let loading;
-
-const loadingClose = () => {
-    loadingNum--;
-    if (loadingNum <= 0) {
-        loading.close();
-        loadingNum = 0;
-    }
-}
-
 //请求拦截
 http.interceptors.request.use(config => {
-    loading = ElLoading.service(loadingOption);
-    loadingNum++;
+    loadingCreate();
     //序列化处理POST请求携带的数据
     if (config.method === 'post') {
         config.data = JSON.stringify(config.data);
@@ -69,6 +44,7 @@ http.interceptors.response.use(result => {
             return result.data;
         //未登录,缺少对应权限
         case 401:
+            message.centerMessage(result.data.message, 'error');
             router.push("/login");
             break;
         //账号或密码错误

@@ -1,10 +1,11 @@
 <template>
   <MyBanner></MyBanner>
+  <div style="height: 2000px;background-color: rgba(255, 255, 255,0.1);"></div>
 </template>
 
 <script>
 
-import {getImageUrl} from "@/api/api";
+import {imageUrlApi} from "@/api/api";
 import MyBanner from "@/components/MyBanner";
 
 export default {
@@ -16,7 +17,7 @@ export default {
     }
   },
   mounted() {
-    getImageUrl()
+    imageUrlApi()
         .then((result) => {
           this.backgroundImage = result.data;
         })

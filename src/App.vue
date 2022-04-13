@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {getRsaPublicKey} from "@/api/api";
+import {rsaPublicKeyApi} from "@/api/api";
 
 export default {
   name: 'App',
@@ -13,7 +13,7 @@ export default {
   methods: {
     //获取RSA加密公钥
     getRsaKey: () => {
-      getRsaPublicKey()
+      rsaPublicKeyApi()
           .then(result => {
             localStorage.setItem("rsa_public_key", result.data);
             console.log(localStorage.getItem("rsa_public_key"));

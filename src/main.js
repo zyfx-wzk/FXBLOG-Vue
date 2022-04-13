@@ -9,6 +9,7 @@ import hljs from 'highlight.js'
 import java from 'highlight.js/lib/languages/java'
 import json from 'highlight.js/lib/languages/json'
 
+import "../src/assets/css/color.less"
 
 import {createApp} from 'vue';
 import App from "@/App";

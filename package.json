@@ -9,10 +9,11 @@
   },
   "dependencies": {
     "@kangc/v-md-editor": "^2.3.14",
+    "aplayer": "^1.10.1",
     "axios": "^0.26.1",
     "axios-retry": "^3.2.4",
     "core-js": "^3.8.3",
-    "element-plus": "^2.0.6",
+    "element-plus": "^2.1.9",
     "highlight.js": "^11.5.0",
     "jsencrypt": "^3.2.1",
     "qs": "^6.10.3",
