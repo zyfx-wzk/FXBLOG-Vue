@@ -6,6 +6,7 @@
 <script>
 import 'aplayer/dist/APlayer.min.css';
 import APlayer from 'aplayer';
+import {getMusicList} from "@/util/music";
 
 export default {
   name: "MusicPlayer",
@@ -14,26 +15,28 @@ export default {
       audio: [
         {
           //歌曲名,作者,歌曲链接,图片链接,歌词链接
-          name:"",
-          artist:"",
-          url:"",
-          cover:"",
-          lrc:""
+          name: "",
+          artist: "",
+          url: "",
+          cover: "",
+          lrc: ""
         }
       ],
       info: {
-        fixed: true, // 不开启吸底模式
+        fixed: true, // 吸底模式
         listFolded: true, // 折叠歌曲列表
-        autoplay: true, // 开启自动播放
+        autoplay: true, // 自动播放
         preload: "auto", // 自动预加载歌曲
         loop: "all", // 播放循环模式、all全部循环 one单曲循环 none只播放一次
         order: "random", //  播放模式，list列表播放, random随机播放
+        volume: 1//默认音量
       },
     };
   },
   mounted() {
     // 初始化播放器
-    this.createPlayer();
+
+    this.getAudioList();
   },
   methods: {
     createPlayer() {
@@ -45,6 +48,13 @@ export default {
         ...this.info, // 其他配置信息
       });
     },
+    getAudioList() {
+      getMusicList("3188992")
+          .then((list) => {
+            this.audio = list;
+            this.createPlayer();
+          })
+    }
   },
 };
 </script>

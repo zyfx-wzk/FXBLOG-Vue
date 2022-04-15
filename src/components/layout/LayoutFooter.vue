@@ -27,11 +27,11 @@ export default {
   data() {
     return {
       motto: {
-        "href": "https://hitokoto.cn/?uuid=e7edd354-edd1-4f20-afad-30074c948cb0",
-        "uuid": "e7edd354-edd1-4f20-afad-30074c948cb0",
-        "hitokoto": "路曼曼其修远兮，吾将上下而求索。",
-        "from": "离骚",
-        "from_who": "屈原",
+        href: "https://hitokoto.cn/?uuid=e7edd354-edd1-4f20-afad-30074c948cb0",
+        uuid: "e7edd354-edd1-4f20-afad-30074c948cb0",
+        hitokoto: "路曼曼其修远兮，吾将上下而求索。",
+        from: "离骚",
+        from_who: "屈原"
       }
     }
   },
@@ -44,6 +44,7 @@ export default {
           .then((result) => {
             this.motto = result.data;
             this.motto.href = "https://hitokoto.cn/?uuid=" + this.motto.uuid;
+            console.log(this.motto)
           })
           .catch((error) => {
             console.log(error);
