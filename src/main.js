@@ -14,8 +14,8 @@ import "../src/assets/css/color.less"
 import {createApp} from 'vue';
 import App from "@/App";
 
-//路由
 import router from "@/router/router";
+import store from "@/store/store";
 
 hljs.registerLanguage('json', json);
 hljs.registerLanguage('java', java);
@@ -23,7 +23,9 @@ VMdEditor.use(githubTheme, {Hljs: hljs})
 
 const app = createApp(App)
 
+
 app.use(ElementPlus)
 app.use(VMdEditor)
 app.use(router)
+app.use(store)
 app.mount('#app')

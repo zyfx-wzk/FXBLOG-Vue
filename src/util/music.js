@@ -10,7 +10,7 @@ const getAudioInfo = async (hash) => {
         .then((result) => {
             result = result.data
             let url = result["url"]
-            let cover = result["imgUrl"].replace("{size}","100")
+            let cover = result["imgUrl"].replace("{size}", "100")
             if (url.length !== 0) {
                 audio.push({
                     url, cover,
@@ -40,6 +40,9 @@ export async function getMusicList(uuid) {
     for (const l of list) {
         await getAudioInfo(l.hash);
     }
+    localStorage.setItem("musicList", JSON.stringify({
+        uuid, audio
+    }));
     console.log(audio);
     return audio;
 }

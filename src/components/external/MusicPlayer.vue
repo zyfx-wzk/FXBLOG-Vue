@@ -25,7 +25,7 @@ export default {
       info: {
         fixed: true, // 吸底模式
         listFolded: true, // 折叠歌曲列表
-        autoplay: true, // 自动播放
+        autoplay: false, // 自动播放
         preload: "auto", // 自动预加载歌曲
         loop: "all", // 播放循环模式、all全部循环 one单曲循环 none只播放一次
         order: "random", //  播放模式，list列表播放, random随机播放
@@ -35,7 +35,6 @@ export default {
   },
   mounted() {
     // 初始化播放器
-
     this.getAudioList();
   },
   methods: {
@@ -49,11 +48,26 @@ export default {
       });
     },
     getAudioList() {
-      getMusicList("3188992")
-          .then((list) => {
-            this.audio = list;
+      //轮询setting数据,当setting数据改变时,退出
+      let time = setInterval(() => {
+        const setting = this.$store.state.setting;
+        if (setting.isChanged) {
+          //从缓存中获取歌单ID,若相等则直接取用缓存中的歌单
+          let data = JSON.parse(localStorage.getItem("musicList"));
+          if (data !== null && data.uuid === setting.musicUuid) {
+            this.audio = data.audio;
             this.createPlayer();
-          })
+            console.log(1);
+          } else {
+            getMusicList(setting.musicUuid)
+                .then((list) => {
+                  this.audio = list;
+                  this.createPlayer();
+                })
+          }
+          clearInterval(time);
+        }
+      }, 1000);
     }
   },
 };

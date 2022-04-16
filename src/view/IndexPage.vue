@@ -11,7 +11,7 @@
 import LayoutHeader from "@/components/layout/LayoutHeader";
 import LayoutBody from "@/components/layout/LayoutBody";
 import LayoutBack from "@/components/layout/LayoutBack";
-import {imageUrlApi} from "@/api/api";
+import {imageUrlApi, metaDataApi} from "@/api/api";
 import LayoutFooter from "@/components/layout/LayoutFooter";
 import {loadingClose, loadingCreate} from "@/util/loading";
 
@@ -22,11 +22,13 @@ export default {
       backgroundImage: "",
     }
   },
-  mounted() {
-    this.loadPage();
-  },
   created() {
+    this.loadPage();
     this.getBackground();
+    this.getSetting();
+  },
+  mounted() {
+
   },
   components: {
     LayoutFooter,
@@ -43,6 +45,12 @@ export default {
       imageUrlApi()
           .then((result) => {
             this.backgroundImage = result.data;
+          })
+    },
+    getSetting() {
+      metaDataApi("setting", "value")
+          .then((result) => {
+            this.$store.commit('updateSeting', result.data);
           })
     }
   }
