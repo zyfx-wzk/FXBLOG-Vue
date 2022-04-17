@@ -18,6 +18,15 @@ module.exports = {
                     '^/music': ''
                 }
             },
+            '/audio': {
+                target: 'https://wwwapi.kugou.com/',
+                ws: true,
+                //允许跨域
+                changOrigin: true,
+                pathRewrite: {
+                    '^/audio': ''
+                }
+            },
         }
     }
 }

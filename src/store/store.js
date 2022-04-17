@@ -2,10 +2,11 @@ import {createStore} from "vuex";
 
 const store = createStore({
     state() {
-        return{
+        return {
             setting: {
                 isChanged: false,
-                musicUuid: 0
+                musicUuid: 0,
+                musicMid: ""
             }
         }
     },
@@ -23,8 +24,7 @@ const store = createStore({
             }, 100)
         }
     },
-    getters: {
-    },
+    getters: {},
     modules: {}
 })
 

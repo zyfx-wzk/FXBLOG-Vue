@@ -43,6 +43,8 @@ export default {
       // eslint-disable-next-line no-unused-vars
       const aPlayer = new APlayer({
         container: document.getElementById("aplayer"),
+        //使用js字符串格式加载歌词
+        lrcType: 1,
         audio: this.audio, // 音乐信息
         ...this.info, // 其他配置信息
       });
@@ -57,9 +59,8 @@ export default {
           if (data !== null && data.uuid === setting.musicUuid) {
             this.audio = data.audio;
             this.createPlayer();
-            console.log(1);
           } else {
-            getMusicList(setting.musicUuid)
+            getMusicList(setting.musicUuid, setting.musicMid)
                 .then((list) => {
                   this.audio = list;
                   this.createPlayer();
