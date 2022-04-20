@@ -11,6 +11,10 @@ import json from 'highlight.js/lib/languages/json'
 
 import "../src/assets/css/color.less"
 
+//引入jquary
+const $ = require('jquery');
+window.$ = $;
+
 import {createApp} from 'vue';
 import App from "@/App";
 

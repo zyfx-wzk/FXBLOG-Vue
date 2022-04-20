@@ -6,7 +6,6 @@ const store = createStore({
             setting: {
                 isChanged: false,
                 musicUuid: 0,
-                musicMid: ""
             }
         }
     },

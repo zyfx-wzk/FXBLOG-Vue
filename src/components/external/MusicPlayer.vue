@@ -1,6 +1,5 @@
 <template>
-  <div id="aplayer">
-  </div>
+  <div id="aplayer"/>
 </template>
 
 <script>
@@ -31,6 +30,7 @@ export default {
         order: "random", //  播放模式，list列表播放, random随机播放
         volume: 1//默认音量
       },
+      hover: true
     };
   },
   mounted() {
@@ -38,6 +38,19 @@ export default {
     this.getAudioList();
   },
   methods: {
+    //使用jQuary监听点击事件,动态添加隐藏动画
+    clickButton() {
+      window.$('.aplayer-icon').on('click', () => {
+        let aplayer = window.$('.aplayer-body');
+        if (this.hover) {
+          aplayer.removeClass('aplayer-hover');
+          this.hover=false;
+        } else {
+          aplayer.addClass('aplayer-hover');
+          this.hover=true;
+        }
+      })
+    },
     createPlayer() {
       // 创建一个音乐播放器实例，并挂载到DOM上，同时进行相关配置
       // eslint-disable-next-line no-unused-vars
@@ -55,33 +68,68 @@ export default {
         const setting = this.$store.state.setting;
         if (setting.isChanged) {
           //从缓存中获取歌单ID,若相等则直接取用缓存中的歌单
-          let data = JSON.parse(localStorage.getItem("musicList"));
+          let data = JSON.parse(sessionStorage.getItem("musicList"));
           if (data !== null && data.uuid === setting.musicUuid) {
             this.audio = data.audio;
             this.createPlayer();
           } else {
-            getMusicList(setting.musicUuid, setting.musicMid)
+            getMusicList(setting.musicUuid)
                 .then((list) => {
                   this.audio = list;
                   this.createPlayer();
                 })
           }
           clearInterval(time);
+          window.$('.aplayer-body').addClass('aplayer-hover');
+          this.clickButton();
         }
       }, 1000);
     }
-  },
-};
+  }
+  ,
+}
+;
 </script>
 
-<style scoped lang="less">
-#app {
-  width: 100%;
-  height: 100%;
-  padding: 50px;
+<style lang="less">
+#aplayer {
+  width: 320px; // 定个宽度
+}
 
-  #aplayer {
-    width: 320px; // 定个宽度
+.aplayer-body, .aplayer-list {
+  color: var(--theme-skin-main);
+}
+
+.aplayer-hover {
+  left: -66px !important;
+
+  &:hover {
+    left: 0 !important;
+  }
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap {
+  .aplayer-bar {
+    height: 6px;
+    border-radius: 10px;
+
+    .aplayer-played {
+      height: inherit;
+      border-radius: inherit;
+
+      .aplayer-thumb {
+        height: 12px;
+        width: 12px;
+        right: 3px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .18);
+        transition: all .35s
+      }
+    }
+
+    .aplayer-loaded {
+      height: inherit;
+      border-radius: inherit;
+    }
   }
 }
 </style>
