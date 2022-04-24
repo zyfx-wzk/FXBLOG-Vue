@@ -7,7 +7,8 @@ const loadingOption = {
     fullscreen: true,
     //锁定屏幕
     lock: true,
-    text: "正在加载资源"
+    text: "正在加载资源",
+    background: "white"
 }
 
 //目前加载的数量
@@ -16,9 +17,14 @@ let loadingNum = 0;
 //加载页面实例
 let loading;
 
-export function loadingCreate(){
-    loading = ElLoading.service(loadingOption);
-    loadingNum++;
+let isLoading = false;
+
+export async function loadingCreate(count = 1) {
+    if (!isLoading) {
+        isLoading = true;
+        loading = ElLoading.service(loadingOption);
+    }
+    loadingNum += count;
 }
 
 export function loadingClose() {
@@ -26,5 +32,6 @@ export function loadingClose() {
     if (loadingNum <= 0) {
         loading.close();
         loadingNum = 0;
+        isLoading = false;
     }
 }

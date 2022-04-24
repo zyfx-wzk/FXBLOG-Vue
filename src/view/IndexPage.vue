@@ -1,5 +1,5 @@
 <template>
-  <div class="backguard-image" :style="{'background-image':`url(${backgroundImage})`}">
+  <div class="backguard-image" :class="{'hover':isHover}" :style="{'background-image':`url(${backgroundImage})`}">
     <LayoutHeader></LayoutHeader>
     <LayoutBody></LayoutBody>
     <LayoutBack></LayoutBack>
@@ -19,6 +19,7 @@ export default {
   name: "IndexPage",
   data() {
     return {
+      isHover: true,
       backgroundImage: "",
     }
   },
@@ -28,7 +29,6 @@ export default {
     this.getSetting();
   },
   mounted() {
-
   },
   components: {
     LayoutFooter,
@@ -38,13 +38,20 @@ export default {
   },
   methods: {
     loadPage() {
-      loadingCreate()
-      setTimeout(loadingClose, 3000);
+      loadingCreate(2);
+      setTimeout(()=>{
+        this.isHover = false
+      },500)
     },
     getBackground() {
       imageUrlApi()
           .then((result) => {
-            this.backgroundImage = result.data;
+            let image = new Image();
+            image.src = result.data;
+            image.onload = () => {
+              this.backgroundImage = result.data;
+              loadingClose();
+            }
           })
     },
     getSetting() {
@@ -58,8 +65,12 @@ export default {
 </script>
 
 <style scoped>
+.hover {
+  display: none;
+}
+
 .backguard-image {
-  min-height: 100vh;
+  min-height: calc(100vh - 82px);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

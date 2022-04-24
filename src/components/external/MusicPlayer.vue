@@ -6,6 +6,7 @@
 import 'aplayer/dist/APlayer.min.css';
 import APlayer from 'aplayer';
 import {getMusicList} from "@/util/music";
+import {loadingClose} from "@/util/loading";
 
 export default {
   name: "MusicPlayer",
@@ -44,10 +45,10 @@ export default {
         let aplayer = window.$('.aplayer-body');
         if (this.hover) {
           aplayer.removeClass('aplayer-hover');
-          this.hover=false;
+          this.hover = false;
         } else {
           aplayer.addClass('aplayer-hover');
-          this.hover=true;
+          this.hover = true;
         }
       })
     },
@@ -61,6 +62,9 @@ export default {
         audio: this.audio, // 音乐信息
         ...this.info, // 其他配置信息
       });
+      window.$('.aplayer-body').addClass('aplayer-hover');
+      this.clickButton();
+      loadingClose();
     },
     getAudioList() {
       //轮询setting数据,当setting数据改变时,退出
@@ -77,11 +81,9 @@ export default {
                 .then((list) => {
                   this.audio = list;
                   this.createPlayer();
-                })
+                });
           }
           clearInterval(time);
-          window.$('.aplayer-body').addClass('aplayer-hover');
-          this.clickButton();
         }
       }, 1000);
     }
@@ -121,6 +123,7 @@ export default {
         height: 12px;
         width: 12px;
         right: 3px;
+        top: 1px;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, .18);
         transition: all .35s
       }

@@ -10,13 +10,20 @@ const routes = [
     {
         name: 'index',
         path: '/index',
+        redirect: '/home',
         component: () => import('../view/IndexPage'),
         children: [
             //主页
             {
                 name:'home',
-                path:'',
-                component:()=>import('../view/HomePage')
+                path:'/home',
+                component:()=>import('../view/views/HomePage')
+            },
+            //文章
+            {
+                name:'article',
+                path:'/article',
+                component:()=>import('../view/views/ArticlePage')
             }
         ]
     },

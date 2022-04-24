@@ -1,12 +1,11 @@
 <template>
-  <MyBanner></MyBanner>
+  <SelfFlag></SelfFlag>
   <div style="height: 2000px;background-color: rgba(255, 255, 255,0.1);"></div>
 </template>
 
 <script>
-
 import {imageUrlApi} from "@/api/api";
-import MyBanner from "@/components/MyBanner";
+import SelfFlag from "@/components/SelfFlag"
 
 export default {
   name: "HomePage",
@@ -23,7 +22,7 @@ export default {
         })
   },
   methods: {},
-  components: {MyBanner}
+  components: {SelfFlag}
 }
 </script>
 

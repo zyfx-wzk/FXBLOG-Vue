@@ -21,17 +21,15 @@
         </div>
       </div>
     </div>
-    <MusicPlayer></MusicPlayer>
   </div>
 </template>
 
 <script>
 import {metaDataApi} from "@/api/api";
-import MusicPlayer from "@/components/external/MusicPlayer";
 
 export default {
-  name: "MyBanner",
-  components: {MusicPlayer},
+  name: "SelfFlag",
+  components: {},
   data() {
     return {
       myInfo: {
@@ -42,6 +40,8 @@ export default {
     }
   },
   created() {
+  },
+  mounted() {
     this.getBaseInfo()
   },
   methods: {

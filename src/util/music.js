@@ -16,9 +16,27 @@ export async function getMusicList(uuid) {
             console.log(error);
         })
     const mid = getMid();
+    let request = [];
     for (const l of list) {
-        await getAudioInfo(l['album_id'], l.hash, mid);
+        request.push(getAudioInfo(l['album_id'], l.hash, mid));
     }
+    //多请求并发执行
+    await axios.all(request)
+        .then((result) => {
+            for (const resultElement of result) {
+                const r = resultElement.data.data;
+                const url = r['play_url'];
+                if (url.length !== 0) {
+                    audio.push({
+                        url, cover: r["img"], lrc: r["lyrics"],
+                        name: r["song_name"], artist: r["author_name"],
+                    });
+                }
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     //缓存歌单信息,加快二次加载速度
     sessionStorage.setItem("musicList", JSON.stringify({
         uuid, audio
@@ -28,8 +46,8 @@ export async function getMusicList(uuid) {
 }
 
 //根据歌曲HASH和歌词ID获取具体歌曲信息
-const getAudioInfo = async (album_id, hash, mid) => {
-    await axios("/audio/yy/index.php" +
+const getAudioInfo = (album_id, hash, mid) => {
+    return axios("/audio/yy/index.php" +
         "?r=play/getdata" +
         "&hash=" + hash +
         "&mid=" + mid +
@@ -38,22 +56,6 @@ const getAudioInfo = async (album_id, hash, mid) => {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36"
     })
-        .then((result) => {
-            result = result.data.data;
-            const url = result["play_url"];
-            const cover = result["img"];
-            let lrc = result["lyrics"]
-            if (url.length !== 0) {
-                audio.push({
-                    url, cover, lrc,
-                    name: result["song_name"],
-                    artist: result["author_name"],
-                })
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        })
 }
 
 //根据酷狗音乐规则伪造mid

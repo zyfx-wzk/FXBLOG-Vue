@@ -6,20 +6,21 @@
         <p class="site-name">FXBLOG</p>
       </router-link>
     </div>
-    <div>
-      <span></span>
-    </div>
-    <el-menu mode="horizontal" :router="true" class="header-menu">
+    <el-menu mode="horizontal" :ellipsis="false" :router="true" class="header-menu" default-active="/index">
       <el-menu-item index="/index" class="menu-item">首页</el-menu-item>
       <el-menu-item index="/login" class="menu-item">登录</el-menu-item>
     </el-menu>
   </div>
+  <MusicPlayer></MusicPlayer>
 </template>
 
 <script>
 
+import MusicPlayer from "@/components/external/MusicPlayer";
+
 export default {
   name: "LayoutHeader",
+  components: {MusicPlayer},
   data() {
     return {
       lastScrollTop: 0,
@@ -49,7 +50,7 @@ export default {
   position: fixed;
   padding: 0 80px;
   top: 0;
-  width: 100%;
+  width: calc(100vw - 160px);
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -68,7 +69,7 @@ export default {
 }
 
 .header-menu {
-  width: 300px;
+  width: auto;
   height: 80px;
   border: 0;
 
