@@ -2,7 +2,7 @@
   <div id="layout-header" :class="{'hidden':hidden,'fixed':fixed}">
     <div id="header-logo">
       <router-link to="/index">
-        <img src="../../assets/img/title-logo.svg" alt=""/>
+        <img src="../../assets/img/logo.svg" alt=""/>
         <p class="site-name">FXBLOG</p>
       </router-link>
     </div>
@@ -13,7 +13,6 @@
   </div>
   <MusicPlayer></MusicPlayer>
 </template>
-
 <script>
 
 import MusicPlayer from "@/components/external/MusicPlayer";
@@ -87,7 +86,8 @@ export default {
   }
 
   p {
-    font-size: 15px;
+    margin-top: 3px;
+    font-size: 16px;
     font-weight: bold;
     position: relative;
   }

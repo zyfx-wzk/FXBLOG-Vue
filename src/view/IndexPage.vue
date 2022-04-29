@@ -1,5 +1,5 @@
 <template>
-  <div class="backguard-image" :class="{'hover':isHover}" :style="{'background-image':`url(${backgroundImage})`}">
+  <div class="backguard-image" :class="{'hover':this.isHover}" :style="{'background-image':`url(${backgroundImage})`}">
     <LayoutHeader></LayoutHeader>
     <LayoutBody></LayoutBody>
     <LayoutBack></LayoutBack>
@@ -39,9 +39,9 @@ export default {
   methods: {
     loadPage() {
       loadingCreate(2);
-      setTimeout(()=>{
+      setTimeout(() => {
         this.isHover = false
-      },500)
+      }, 500)
     },
     getBackground() {
       imageUrlApi()

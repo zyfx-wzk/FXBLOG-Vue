@@ -1,6 +1,6 @@
 <template>
-  <div id="my-banner">
-    <div class="img-banner">
+  <div id="my-self">
+    <div class="img-self">
       <!--博主信息-->
       <div class="info-box">
         <!-- 头像 -->
@@ -63,13 +63,13 @@ export default {
 
 <style scoped lang="less">
 
-#my-banner {
+#my-self {
   position: relative;
   margin-top: 82px;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 82px);
 
-  .img-banner {
+  .img-self {
     transition: unset;
     width: inherit;
     height: inherit;
@@ -81,7 +81,7 @@ export default {
   position: relative;
   max-width: 800px;
   padding: 0 10px;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -91,10 +91,10 @@ export default {
       //旋转动画
       transform: rotate(0);
       transition: all 0.8s ease !important;
-      filter: contrast(130%);
-      width: 120px;
-      height: 120px;
-      border-radius: 50px;
+      filter: contrast(100%);
+      width: 150px;
+      height: 150px;
+      border-radius: 100px;
       box-shadow: inset 0 0 10px var(--theme-skin-main);
       padding: 5px;
 
@@ -108,7 +108,6 @@ export default {
     width: 75%;
     max-width: 450px;
     font-size: 16px;
-    color: var(--theme-skin-main);
     background: var(--theme-background);
     padding: 15px 30px 3px 30px;
     margin: 30px auto 0 auto;
@@ -117,8 +116,13 @@ export default {
     line-height: 30px;
     border-radius: 15px;
 
+    p {
+      font-size: 20px;
+      color: var(--theme-skin-main);
+      transition: all 0.4s ease !important;
+    }
+
     p:hover {
-      filter: contrast(120%);
       color: var(--theme-skin-less);
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div id="layout-footer">
-    <p style="color:var(--footer-less-text);">Copyright © by ZYFX All Rights Reserved.</p>
-    <div style="width:400px;margin: 0 auto;padding: 20px 0;color:var(--footer-main-text)">
+    <p style="color:var(--footer-less-text);">Copyright © 2022 by ZYFX All Rights Reserved.</p>
+    <div style="width:580px;margin: 0 auto;padding: 20px 0;color:var(--footer-main-text)">
       <img src="https://cdn.jsdelivr.net/gh/zyfx-wzk/Images/theme/record.png" style="float: left" alt="">
       <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=36040202000256"
          style="text-decoration: none;height: 20px;line-height: 20px">
@@ -9,8 +9,7 @@
           赣公网安备 36040202000256号
         </p>
       </a>
-      <a href="https://beian.miit.gov.cn/" target="_blank">
-        津ICP备2021009073号-1</a>
+      <a href="https://beian.miit.gov.cn/" target="_blank">津ICP备2021009073号-1</a>
     </div>
     <div style="color: var(--footer-main-text)">
       <a target="_blank" :href="motto.href">{{ motto.hitokoto }}———{{ motto.from_who }}「{{ motto.from }}」</a>
@@ -62,7 +61,7 @@ export default {
   text-align: center;
   padding: max(2%, 45px);
   margin: auto;
-  font-size: 13px;
+  font-size: 18px;
   background-color: rgba(255, 255, 255, 0.1);
 
   a {

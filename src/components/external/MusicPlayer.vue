@@ -41,7 +41,7 @@ export default {
   methods: {
     //使用jQuary监听点击事件,动态添加隐藏动画
     clickButton() {
-      window.$('.aplayer-icon').on('click', () => {
+      window.$('.aplayer-miniswitcher').on('click', () => {
         let aplayer = window.$('.aplayer-body');
         if (this.hover) {
           aplayer.removeClass('aplayer-hover');

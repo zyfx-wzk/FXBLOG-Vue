@@ -1,20 +1,33 @@
 <template>
-  <div style="margin-top: 82px"></div>
-  <div style="width: 60%; height: 600px">
-    <v-md-editor v-model="text" height="100%"></v-md-editor>
+  <div class="article-box">
+    <div class="article">
+      <ArticleDisplay></ArticleDisplay>
+    </div>
   </div>
 </template>
 
 <script>
+import ArticleDisplay from "@/components/external/ArticleDisplay";
+
 export default {
   name: "AticlePage",
+  components: {ArticleDisplay},
   data() {
     return {
-      text: "",
     }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.article-box {
+  margin-top: 82px;
+  background-color: rgba(255, 255, 255,0.1);
+
+  .article {
+    height: auto;
+    width: 70%;
+    padding: 0 15%;
+  }
+}
 </style>
