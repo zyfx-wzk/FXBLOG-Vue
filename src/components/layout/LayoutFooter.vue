@@ -1,5 +1,10 @@
 <template>
-  <div id="layout-footer">
+  <div id="layout-footer" >
+    <!--  樱花旋转 -->
+    <div class="footer-device" style="padding-bottom: max(2%, 45px);">
+      <i class="iconfont icon-sakura rotating"
+         style="color: var(--theme-skin-main);display:inline-block;font-size: 30px;"></i>
+    </div>
     <p style="color:var(--footer-less-text);">Copyright © 2022 by ZYFX All Rights Reserved.</p>
     <div style="width:580px;margin: 0 auto;padding: 20px 0;color:var(--footer-main-text)">
       <img src="https://cdn.jsdelivr.net/gh/zyfx-wzk/Images/theme/record.png" style="float: left" alt="">
@@ -57,6 +62,8 @@ export default {
 </script>
 
 <style scoped lang="less">
+@import "../../assets/css/cherry.css";
+
 #layout-footer {
   text-align: center;
   padding: max(2%, 45px);

@@ -1,6 +1,10 @@
 <template>
   <div id="blog-list">
-    <div v-for="blog in blogList" :key="blog.title" :title="blog.title" class="blog">
+    <h1 class="main-title">
+      ARTI<img class="time-icon" src="../assets/img/article.svg" alt="" style="margin:0;">CLE
+    </h1>
+    <div v-for="(blog,index) in blogList" :key="index" :title="blog.title"
+         class="blog" :class="index%2===0?'left':'right'">
       <div class="blog-image">
         <router-link :to="{path:'/article',query:{uuid:blog.uuid}}">
           <img :src="blog.image" alt=""/>
@@ -22,9 +26,14 @@
             <img class="time-icon" src="../assets/img/type.svg" alt="">{{ blog.type }}
           </div>
         </div>
-        <div class="blob-brief">
+        <div class="blog-brief">
+          {{ blog.text }}
         </div>
       </div>
+    </div>
+    <div class="loading-more">
+      <button :class="{'isHover':hover}" @click="getBlogList()">更早的文章</button>
+      <p :class="{'isHover':!hover}">很高兴你翻到这里，但是真的没有更早的文章了</p>
     </div>
   </div>
 </template>
@@ -38,6 +47,7 @@ export default {
     return {
       page: 1,
       size: 5,
+      hover: false,
       blogList: []
     }
   },
@@ -48,7 +58,10 @@ export default {
     getBlogList() {
       blogListApi(this.page, this.size)
           .then((result) => {
-            this.blogList = result.data;
+            this.blogList.push.apply(this.blogList, result.data);
+            this.page++;
+            this.hover = !(result.data.length === this.size);
+            console.log(result.data.length)
           })
     },
     //时间转换
@@ -67,20 +80,86 @@ export default {
 </script>
 
 <style scoped lang="less">
+.isHover {
+  display: none !important;
+}
+
 #blog-list {
   width: 820px;
-  padding: 80px 0;
+  padding-top: 40px;
+
+  h1, .loading-more {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+
+  h1 {
+    padding-bottom: 20px;
+    color: var(--theme-skin-main);
+    border-bottom: 6px dotted var(--theme-background);
+  }
+
+  .loading-more {
+    button, p {
+      font-size: 20px;
+      color: var(--theme-base-white);
+    }
+
+    button {
+      padding: 13px 35px;
+      border: 2px solid var(--theme-base-white);
+      border-radius: 50px;
+      background-color: transparent;
+    }
+  }
+
+  .left {
+    display: flex;
+    flex-direction: row;
+
+    .blog-title, .blog-info, .blog-brief {
+      text-align: right;
+      float: right;
+    }
+
+    .blog-title {
+      margin-right: 5px;
+    }
+
+    .info-item {
+      margin-left: 10px;
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: row-reverse;
+
+    .blog-title, .blog-info, .blog-brief {
+      text-align: left;
+      float: left;
+    }
+
+    .blog-title {
+      margin-left: 5px;
+    }
+
+    .info-item {
+      margin-right: 10px;
+    }
+  }
 
   .blog {
     width: 100%;
     height: 300px;
     margin: 40px 0;
-    display: inline-flex;
     overflow: hidden;
     transition: all 0.4s ease !important;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--theme-base-white);
     border-radius: 15px;
     box-shadow: 0 0 20px -4px var(--blog-list-box);
+
 
     &:hover {
       box-shadow: 0 0 20px 10px var(--blog-list-box);
@@ -107,9 +186,12 @@ export default {
       width: 45%;
       height: 260px;
       padding: 20px 30px;
+      display: flex;
+      flex-direction: column;
 
       .blog-time {
         width: max-content;
+        height: 20px;
         display: flex;
         align-items: center;
 
@@ -120,15 +202,11 @@ export default {
 
       .blog-title, .blog-info, .blog-brief {
         width: 100%;
-        text-align: right;
         display: block;
-        float: right;
-        margin-top: 20px;
+        margin-top: 25px;
       }
 
       .blog-title {
-        margin-left: 5px;
-
         h2 {
           color: var(--theme-base-color);
           transition: all 0.4s ease !important;
@@ -140,17 +218,18 @@ export default {
       }
 
       .blog-info {
-        height: 20px;
-
         .info-item {
           line-height: 20px;
-          margin-left: 10px;
           display: inline-flex;
           align-items: center;
         }
       }
 
       .blog-brief {
+        white-space: pre-wrap;
+        //简介溢出处理
+        overflow: hidden;
+        text-overflow: clip;
       }
     }
 
