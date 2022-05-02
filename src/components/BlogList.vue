@@ -1,7 +1,7 @@
 <template>
   <div id="blog-list">
     <h1 class="main-title">
-      ARTI<img class="time-icon" src="../assets/img/article.svg" alt="" style="margin:0;">CLE
+      ARTI<i class="icon iconfont icon-shejiwenzhang" style="font-size:32px;"></i>CLE
     </h1>
     <div v-for="(blog,index) in blogList" :key="index" :title="blog.title"
          class="blog" :class="index%2===0?'left':'right'">
@@ -12,18 +12,17 @@
       </div>
       <div class="blog-content">
         <div class="item blog-time">
-          <img class="time-icon" src="../assets/img/time.svg" alt="">
-          发布于{{ this.timeProcess(blog.time) }}
+          <i class="icon iconfont icon-shijian" style="margin-right: 5px;"></i>发布于{{ this.timeProcess(blog.time) }}
         </div>
         <router-link class="blog-title" :to="{path:'/article',query:{uuid:blog.uuid}}">
           <h2>{{ blog.title }}</h2>
         </router-link>
         <div class="blog-info">
           <div class="item info-item">
-            <img class="time-icon" src="../assets/img/click.svg" alt="">{{ blog.count }}热度
+            <i class="icon iconfont icon-redu" style="margin-right: 5px;"></i>{{ blog.count }}热度
           </div>
           <div class="item info-item">
-            <img class="time-icon" src="../assets/img/type.svg" alt="">{{ blog.type }}
+            <i class="icon iconfont icon-wenjianjia" style="margin-right: 5px;"></i>{{ blog.type }}
           </div>
         </div>
         <div class="blog-brief">
@@ -61,7 +60,6 @@ export default {
             this.blogList.push.apply(this.blogList, result.data);
             this.page++;
             this.hover = !(result.data.length === this.size);
-            console.log(result.data.length)
           })
     },
     //时间转换
@@ -101,6 +99,8 @@ export default {
   }
 
   .loading-more {
+
+
     button, p {
       font-size: 20px;
       color: var(--theme-base-white);
@@ -111,6 +111,12 @@ export default {
       border: 2px solid var(--theme-base-white);
       border-radius: 50px;
       background-color: transparent;
+      transition: color .2s ease-out, border .2s ease-out, opacity .2s ease-out;
+
+      &:hover {
+        border-color: var(--theme-skin-main);
+        color: var(--theme-skin-main);
+      }
     }
   }
 
@@ -194,10 +200,6 @@ export default {
         height: 20px;
         display: flex;
         align-items: center;
-
-        img {
-          margin-right: 5px;
-        }
       }
 
       .blog-title, .blog-info, .blog-brief {
@@ -231,11 +233,6 @@ export default {
         overflow: hidden;
         text-overflow: clip;
       }
-    }
-
-    .time-icon {
-      width: 16px;
-      margin-right: 5px;
     }
 
     .item {

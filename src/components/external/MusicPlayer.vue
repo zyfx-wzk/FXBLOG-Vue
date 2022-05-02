@@ -1,5 +1,5 @@
 <template>
-  <div id="aplayer"/>
+  <div v-show="this.show" id="aplayer"/>
 </template>
 
 <script>
@@ -31,7 +31,8 @@ export default {
         order: "random", //  播放模式，list列表播放, random随机播放
         volume: 1//默认音量
       },
-      hover: true
+      show: false,
+      hidden: true
     };
   },
   mounted() {
@@ -41,16 +42,16 @@ export default {
   methods: {
     //使用jQuary监听点击事件,动态添加隐藏动画
     clickButton() {
-      window.$('.aplayer-miniswitcher').on('click', () => {
-        let aplayer = window.$('.aplayer-body');
-        if (this.hover) {
+      $('.aplayer-miniswitcher').click(() => {
+        let aplayer = $('.aplayer-body');
+        if (this.hidden) {
           aplayer.removeClass('aplayer-hover');
-          this.hover = false;
         } else {
           aplayer.addClass('aplayer-hover');
-          this.hover = true;
         }
+        this.hidden = !this.hidden;
       })
+      this.show = true;
     },
     createPlayer() {
       // 创建一个音乐播放器实例，并挂载到DOM上，同时进行相关配置
@@ -62,7 +63,7 @@ export default {
         audio: this.audio, // 音乐信息
         ...this.info, // 其他配置信息
       });
-      window.$('.aplayer-body').addClass('aplayer-hover');
+      $('.aplayer-body').addClass('aplayer-hover');
       this.clickButton();
       loadingClose();
     },

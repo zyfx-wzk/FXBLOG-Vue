@@ -1,4 +1,3 @@
-//加载页面设置
 import {ElLoading} from "element-plus";
 
 const loadingOption = {
@@ -8,7 +7,6 @@ const loadingOption = {
     //锁定屏幕
     lock: true,
     text: "正在加载资源",
-    background: "white"
 }
 
 //目前加载的数量
@@ -19,16 +17,18 @@ let loading;
 
 let isLoading = false;
 
-export async function loadingCreate(count = 1) {
+export function loadingCreate(count = 1) {
     if (!isLoading) {
         isLoading = true;
         loading = ElLoading.service(loadingOption);
     }
+    console.log(loadingNum)
     loadingNum += count;
 }
 
 export function loadingClose() {
     loadingNum--;
+    console.log(loadingNum)
     if (loadingNum <= 0) {
         loading.close();
         loadingNum = 0;

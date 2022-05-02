@@ -2,13 +2,17 @@ import axios from "axios";
 
 let audio = [];
 
+const ask = axios.create({
+    timeout: 3000,
+    headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+    }
+})
+
 //访问酷狗音乐接口,根据歌单UUID获取歌曲HASH
 export async function getMusicList(uuid) {
     let list = [];
-    await axios("/music/plist/list/" + uuid + "?json=true", {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36"
-    })
+    await ask.get("/music/plist/list/" + uuid + "?json=true")
         .then((result) => {
             list = result.data.list.list.info;
         })
@@ -41,33 +45,19 @@ export async function getMusicList(uuid) {
     sessionStorage.setItem("musicList", JSON.stringify({
         uuid, audio
     }));
-    console.log(audio);
     return audio;
 }
 
 //根据歌曲HASH和歌词ID获取具体歌曲信息
 const getAudioInfo = (album_id, hash, mid) => {
-    return axios("/audio/yy/index.php" +
-        "?r=play/getdata" +
-        "&hash=" + hash +
-        "&mid=" + mid +
-        "&platid=4" +
-        "&album_id=" + album_id, {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36"
-    })
+    return ask.get("/audio/yy/index.php?r=play/getdata" + "&hash=" + hash +
+        "&mid=" + mid + "&platid=4" + "&album_id=" + album_id)
 }
 
 //根据酷狗音乐规则伪造mid
 const getMid = () => {
-    return Md5(n());
-}
-
-//随机数
-const n = () => {
     const e = () => (65536 * (1 + Math.random()) | 0).toString(16).substring(1);
-
-    return e() + e() + "-" + e() + "-" + e() + "-" + e() + "-" + e() + e() + e()
+    return Md5(e() + e() + "-" + e() + "-" + e() + "-" + e() + "-" + e() + e() + e());
 }
 
 //可能是标准的MD5,不确定

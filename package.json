@@ -14,14 +14,12 @@
     "axios-retry": "^3.2.4",
     "babel-plugin-prismjs": "^2.1.0",
     "core-js": "^3.8.3",
-    "element-plus": "^2.1.9",
-    "jquery": "^3.6.0",
+    "element-plus": "^2.1.11",
     "jsencrypt": "^3.2.1",
     "markdown-it": "^12.3.2",
     "prismjs": "^1.28.0",
     "qs": "^6.10.3",
-    "vue": "^3.2.13",
-    "vue-axios": "^3.4.1",
+    "vue": "^3.2.33",
     "vue-router": "^4.0.14",
     "vuex": "^4.0.2"
   },
@@ -34,8 +32,10 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "jquery": "^3.6.0",
     "less": "^4.1.2",
-    "less-loader": "^10.2.0"
+    "less-loader": "^10.2.0",
+    "unplugin-element-plus": "^0.4.0"
   },
   "eslintConfig": {
     "root": true,
@@ -49,7 +49,13 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "generator-star-spacing": "off",
+      "no-irregular-whitespace": "off",
+      "no-tabs": "off",
+      "no-undef": "off",
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": [
     "> 1%",

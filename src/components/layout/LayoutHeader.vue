@@ -6,10 +6,10 @@
         <p class="site-name">FXBLOG</p>
       </router-link>
     </div>
-    <el-menu mode="horizontal" :ellipsis="false" :router="true" class="header-menu" default-active="/index">
-      <el-menu-item index="/index" class="menu-item">首页</el-menu-item>
-      <el-menu-item index="/login" class="menu-item">登录</el-menu-item>
-    </el-menu>
+    <div>
+      <router-link to="/index">首页</router-link>
+      <router-link to="/login">登录</router-link>
+    </div>
   </div>
   <MusicPlayer></MusicPlayer>
 </template>
@@ -28,15 +28,17 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.watchScroll)
+    this.watchScroll();
   },
   methods: {
     watchScroll() {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      this.fixed = scrollTop < this.lastScrollTop || this.lastScrollTop === 0;
-      this.hidden = !this.fixed;
-      this.fixed = scrollTop !== 0 && this.lastScrollTop !== 0;
-      this.lastScrollTop = scrollTop
+      $(window).scroll(() => {
+        let scrollTop = $(window).scrollTop();
+        this.fixed = scrollTop <= 0 || scrollTop <= this.lastScrollTop;
+        this.hidden = !this.fixed;
+        this.lastScrollTop = scrollTop
+      })
+
     }
   }
 }
@@ -47,23 +49,24 @@ export default {
   //置于最上层
   z-index: 200;
   position: fixed;
-  padding: 0 80px;
-  top: 0;
-  width: calc(100vw - 160px);
+  margin: 0 calc(5vw);
+  top: 2.5vh;
+  width: 90vw;
   height: 80px;
+  border-radius: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border: solid 1px #e6e6e6;
-  transition: .3s all ease;
-  background-color: #FFFFFF;
+  justify-content: space-between;
+  transition: all .5s ease !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
   &.hidden {
     top: -100px;
   }
 
   &.fixed {
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
   }
 }
 

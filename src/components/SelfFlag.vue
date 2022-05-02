@@ -65,9 +65,8 @@ export default {
 
 #my-self {
   position: relative;
-  margin-top: 82px;
   width: 100%;
-  height: calc(100vh - 82px);
+  height:100vh;
 
   .img-self {
     transition: unset;

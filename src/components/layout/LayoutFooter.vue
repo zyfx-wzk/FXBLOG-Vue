@@ -7,7 +7,7 @@
     </div>
     <p style="color:var(--footer-less-text);">Copyright © 2022 by ZYFX All Rights Reserved.</p>
     <div style="width:580px;margin: 0 auto;padding: 20px 0;color:var(--footer-main-text)">
-      <img src="https://cdn.jsdelivr.net/gh/zyfx-wzk/Images/theme/record.png" style="float: left" alt="">
+      <img src="https://cdn.jsdelivr.net/gh/zyfx-wzk/Static/theme/picture/record.png" style="float: left" alt="">
       <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=36040202000256"
          style="text-decoration: none;height: 20px;line-height: 20px">
         <p style="float: left;height: 20px;line-height: 20px;margin-left:5px;">
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../../assets/css/cherry.css";
+@import "../../assets/css/sakura.css";
 
 #layout-footer {
   text-align: center;

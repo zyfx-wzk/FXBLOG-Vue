@@ -23,6 +23,7 @@
 <script>
 import router from "@/router/router";
 import {loginApi} from "@/api/api";
+import {getRsaKey} from "@/util/encrypt";
 
 export default {
   name: 'LoginBox',
@@ -35,6 +36,9 @@ export default {
       }
     }
   },
+  mounted() {
+    getRsaKey();
+  },
   methods: {
     login() {
       let data = this.loginInfo;
@@ -43,8 +47,6 @@ export default {
             //成功登录则保存token并跳转到主页面
             localStorage.setItem("token", result.data);
             router.push("/index");
-          })
-          .catch(() => {
           })
     },
     back() {

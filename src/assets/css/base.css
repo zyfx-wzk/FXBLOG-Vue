@@ -1,4 +1,7 @@
+/*谷歌字体*/
 @import url('https://fonts.font.im/css2?family=ZCOOL+KuaiLe&display=swap');
+/*阿里图标*/
+@import url('https://at.alicdn.com/t/font_2968519_fk49d702oo9.css');
 
 * {
     margin: 0;
@@ -43,11 +46,11 @@ img {
 ::-webkit-scrollbar-thumb {
     border-radius: 3px;
     width: 6px;
-    background: #da77f2
+    background: var(--theme-skin-main)
 }
 
 /*滚动条背景*/
 ::-webkit-scrollbar-track {
     border-radius: 3px; /*滚动条的背景区域的圆角*/
-    background-color: #fdf8f5; /*滚动条的背景颜色*/
+    background-color: var(--theme-base-white); /*滚动条的背景颜色*/
 }

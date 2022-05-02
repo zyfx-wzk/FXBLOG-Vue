@@ -21,7 +21,6 @@ export default {
 
 <style scoped lang="less">
 .article-box {
-  margin-top: 82px;
   background-color: rgba(255, 255, 255,0.1);
 
   .article {

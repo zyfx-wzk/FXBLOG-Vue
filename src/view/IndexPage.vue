@@ -1,5 +1,6 @@
 <template>
-  <div class="backguard-image" :class="{'hover':this.isHover}" :style="{'background-image':`url(${backgroundImage})`}">
+  <div class="backguard" v-show="this.hidden"
+       :style="{'background-image':`url(${backgroundImage})`}">
     <LayoutHeader></LayoutHeader>
     <LayoutBody></LayoutBody>
     <LayoutBack></LayoutBack>
@@ -8,18 +9,18 @@
 </template>
 
 <script>
+import LayoutFooter from "@/components/layout/LayoutFooter";
 import LayoutHeader from "@/components/layout/LayoutHeader";
 import LayoutBody from "@/components/layout/LayoutBody";
-import LayoutBack from "@/components/layout/LayoutBack";
 import {imageUrlApi, metaDataApi} from "@/api/api";
-import LayoutFooter from "@/components/layout/LayoutFooter";
 import {loadingClose, loadingCreate} from "@/util/loading";
+import LayoutBack from "@/components/layout/LayoutBack";
 
 export default {
   name: "IndexPage",
   data() {
     return {
-      isHover: true,
+      hidden: false,
       backgroundImage: "",
     }
   },
@@ -28,11 +29,9 @@ export default {
     this.getBackground();
     this.getSetting();
   },
-  mounted() {
-  },
   components: {
-    LayoutFooter,
     LayoutBack,
+    LayoutFooter,
     LayoutBody,
     LayoutHeader
   },
@@ -40,8 +39,8 @@ export default {
     loadPage() {
       loadingCreate(2);
       setTimeout(() => {
-        this.isHover = false
-      }, 500)
+        this.hidden = true;
+      }, 300)
     },
     getBackground() {
       imageUrlApi()
@@ -65,12 +64,8 @@ export default {
 </script>
 
 <style scoped>
-.hover {
-  display: none;
-}
-
-.backguard-image {
-  min-height: calc(100vh - 82px);
+.backguard {
+  min-height: calc(100vh);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

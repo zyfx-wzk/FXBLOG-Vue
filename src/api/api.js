@@ -1,29 +1,31 @@
-import http from "@/api/http";
+import ask from "@/api/ask";
 
+/*内部接口*/
 export function loginApi(data) {
-    return http.post('/login', data)
+    return ask.post('/login', data)
 }
 
+//获取RSA加密公钥
 export function rsaPublicKeyApi() {
-    return http.get('/get/rsa')
-}
-
-//获取页面元数据
-export function metaDataApi(key, type) {
-    return http.get('/get/meta' + '?key=' + key + "&type=" + type)
-}
-
-//获取博客列表
-export function blogListApi(page, size) {
-    return http.get('/get/blog' + '?page=' + page + '&size=' + size)
-}
-
-//获取博客文章
-export function markdownApi(uuid) {
-    return http.get('/get/markdown' + '?uuid=' + uuid)
+    return ask.get('/get/rsa')
 }
 
 //获取随机图片URL
 export function imageUrlApi() {
-    return http.get('/get/image')
+    return ask.get('/get/image')
+}
+
+//获取页面元数据
+export function metaDataApi(key, type) {
+    return ask.get('/get/meta' + '?key=' + key + "&type=" + type)
+}
+
+//获取博客列表
+export function blogListApi(page, size) {
+    return ask.get('/get/blog' + '?page=' + page + '&size=' + size)
+}
+
+//获取博客文章
+export function markdownApi(uuid) {
+    return ask.get('/get/markdown' + '?uuid=' + uuid)
 }
