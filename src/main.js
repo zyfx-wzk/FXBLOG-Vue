@@ -23,7 +23,6 @@ import {createApp} from 'vue';
 import App from "@/App";
 
 import router from "@/router/router";
-import store from "@/store/store";
 
 import ElementPlus from 'element-plus';
 
@@ -32,5 +31,4 @@ const app = createApp(App)
 app.use(ElementPlus)
 app.use(VueMarkdownEditor)
 app.use(router)
-app.use(store)
 app.mount('#app')

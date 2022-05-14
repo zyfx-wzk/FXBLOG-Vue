@@ -15,23 +15,18 @@ let loadingNum = 0;
 //加载页面实例
 let loading;
 
-let isLoading = false;
-
 export function loadingCreate(count = 1) {
-    if (!isLoading) {
-        isLoading = true;
+    if (loadingNum <= 0) {
         loading = ElLoading.service(loadingOption);
+        loadingNum = 0;
     }
-    console.log(loadingNum)
     loadingNum += count;
 }
 
 export function loadingClose() {
     loadingNum--;
-    console.log(loadingNum)
-    if (loadingNum <= 0) {
+    if (loadingNum <= 0 && loading != null) {
         loading.close();
         loadingNum = 0;
-        isLoading = false;
     }
 }

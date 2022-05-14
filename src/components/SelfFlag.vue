@@ -1,6 +1,6 @@
 <template>
-  <div id="my-self">
-    <div class="img-self">
+  <div id="flag-box">
+    <div class="flag-self">
       <!--博主信息-->
       <div class="info-box">
         <!-- 头像 -->
@@ -63,12 +63,12 @@ export default {
 
 <style scoped lang="less">
 
-#my-self {
+#flag-box {
   position: relative;
   width: 100%;
-  height:100vh;
+  height: 100vh;
 
-  .img-self {
+  .flag-self {
     transition: unset;
     width: inherit;
     height: inherit;
@@ -110,7 +110,6 @@ export default {
     background: var(--theme-background);
     padding: 15px 30px 3px 30px;
     margin: 30px auto 0 auto;
-    font-family: miranafont, "Hiragino Sans GB", STXihei, "Microsoft YaHei", SimSun, sans-serif;
     letter-spacing: 1px;
     line-height: 30px;
     border-radius: 15px;
@@ -119,10 +118,10 @@ export default {
       font-size: 20px;
       color: var(--theme-skin-main);
       transition: all 0.4s ease !important;
-    }
 
-    p:hover {
-      color: var(--theme-skin-less);
+      &:hover {
+        color: var(--theme-skin-less);
+      }
     }
   }
 
@@ -131,7 +130,6 @@ export default {
     margin-left: 10px;
     list-style: none;
     display: inline-block;
-    font-family: miranafont, "Hiragino Sans GB", STXihei, "Microsoft YaHei", SimSun, sans-serif;
 
     div {
       float: left;

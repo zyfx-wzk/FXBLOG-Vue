@@ -13,14 +13,9 @@ export function getRsaKey() {
     }
 }
 
-const encrypt = async (data) => {
-    if (key == null) {
-        await getRsaKey();
-        let jsEncrypt = new JSEncrypt();
-        jsEncrypt.setPublicKey(key);
-        data = {data: jsEncrypt.encrypt(data)}
-    }
+export function encrypt(data) {
+    let jsEncrypt = new JSEncrypt();
+    jsEncrypt.setPublicKey(key);
+    data = {data: jsEncrypt.encrypt(data)}
     return data;
 }
-
-export default {encrypt};

@@ -27,7 +27,6 @@ export default {
   created() {
     this.loadPage();
     this.getBackground();
-    this.getSetting();
   },
   components: {
     LayoutBack,
@@ -51,12 +50,6 @@ export default {
               this.backgroundImage = result.data;
               loadingClose();
             }
-          })
-    },
-    getSetting() {
-      metaDataApi("setting", "value")
-          .then((result) => {
-            this.$store.commit('updateSeting', result.data);
           })
     }
   }

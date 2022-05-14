@@ -1,6 +1,6 @@
 <template>
   <div class="article-box">
-    <div class="article">
+    <div style="width: 70%; max-width: 900px;">
       <ArticleDisplay></ArticleDisplay>
     </div>
   </div>
@@ -21,12 +21,8 @@ export default {
 
 <style scoped lang="less">
 .article-box {
+  display: flex;
+  justify-content: center;
   background-color: rgba(255, 255, 255,0.1);
-
-  .article {
-    height: auto;
-    width: 70%;
-    padding: 0 15%;
-  }
 }
 </style>

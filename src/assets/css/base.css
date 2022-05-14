@@ -1,13 +1,13 @@
 /*谷歌字体*/
 @import url('https://fonts.font.im/css2?family=ZCOOL+KuaiLe&display=swap');
 /*阿里图标*/
-@import url('https://at.alicdn.com/t/font_2968519_fk49d702oo9.css');
+@import url('https://at.alicdn.com/t/font_2968519_n8lu6yzxu5.css');
 
 * {
     margin: 0;
     padding: 0;
     border: 0;
-    font-family: "ZCOOL KuaiLe", "Microsoft YaHei", "黑体", "宋体", sans-serif;;
+    font-family: "ZCOOL KuaiLe", "Microsoft YaHei", sans-serif;;
 }
 
 /*包含以下四种的链接*/

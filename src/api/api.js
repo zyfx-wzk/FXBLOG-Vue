@@ -1,8 +1,8 @@
 import ask from "@/api/ask";
 
 /*内部接口*/
-export function loginApi(data) {
-    return ask.post('/login', data)
+export function loginApi(userData) {
+    return ask.post('/login', userData)
 }
 
 //获取RSA加密公钥
@@ -13,6 +13,11 @@ export function rsaPublicKeyApi() {
 //获取随机图片URL
 export function imageUrlApi() {
     return ask.get('/get/image')
+}
+
+//获取歌曲信息
+export function musicListApi() {
+    return ask.get('/get/music')
 }
 
 //获取页面元数据

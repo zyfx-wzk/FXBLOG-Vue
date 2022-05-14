@@ -31,5 +31,9 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://cdn.jsdelivr.net/gh/zyfx-wzk/Static/static/css/szgotop.css');
+@import url("https://cdn.jsdelivr.net/gh/zyfx-wzk/Static/static/css/szgotop.css");
+
+.cd-top{
+  right: 25px !important;
+}
 </style>

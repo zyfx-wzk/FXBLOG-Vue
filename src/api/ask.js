@@ -1,34 +1,40 @@
 import axios from "axios"
 import router from "@/router/router";
 import message from "@/util/message";
-import encrypt from "@/util/encrypt";
 import {loadingClose, loadingCreate} from "@/util/loading";
+import {encrypt} from "@/util/encrypt";
 // axios的初始配置
 const ask = axios.create({
-    baseURL: 'http://localhost:8080/',
+    baseURL: 'https://www.zhuiyifanxing.top',
     timeout: 3000,
     headers: {
         'Content-Type': 'application/json; charset=utf-8'
     }
 })
+//需要登录的接口
+let needToken = ["/test"]
+//需要RSA加密的接口
+let needRSA = ["/login"]
+//不造成页面迟滞或者特殊加载方式的接口
+let noLoad = ["/get/rsa"]
 
 //请求拦截
 ask.interceptors.request.use(config => {
-    loadingCreate();
     //序列化处理POST请求携带的数据
     if (config.method === 'post') {
+        console.log(config)
         config.data = JSON.stringify(config.data);
+        if (needRSA.includes(config.url)) {
+            config.data = encrypt(config.data);
+        }
     }
-    //需要登录的接口
+    //对特殊接口的处理
     const token = localStorage.getItem("token");
-    let needToken = ["/test"]
     if (needToken.includes(config.url)) {
-        config.headers.token = token
+        config.headers.token = token;
     }
-    //需要RSA加密的接口
-    let needRSA = ["/login"]
-    if (needRSA.includes(config.url)) {
-        config.data = encrypt(config.data);
+    if (!noLoad.includes(config.url)) {
+        loadingCreate();
     }
     return config;
 })

@@ -41,8 +41,8 @@ export default {
   },
   methods: {
     login() {
-      let data = this.loginInfo;
-      loginApi(data)
+      console.log(this.loginInfo)
+      loginApi(this.loginInfo)
           .then((result) => {
             //成功登录则保存token并跳转到主页面
             localStorage.setItem("token", result.data);
@@ -57,11 +57,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-* {
-  margin: 0;
-  padding: 0;
-}
-
 a {
   text-decoration: none;
 }
